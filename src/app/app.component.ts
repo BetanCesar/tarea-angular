@@ -1,32 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-export class Student {
-  career: string;
-  id: string;
-  names: string;
-  lastName: string;
-  phone: number;
-  age: number;
-  scolarship: boolean;
-}
-export class Subject {
-  nombre: string;
-  calificacion: number;
-}
-
-
-const STUDENTS: Student[] = [
-  {career: 'ITC', id: 'A01338883', names: 'Cesar David', lastName: 'Betancourt Adame', phone: 54378627, age: 21, scolarship: true},
-  {career: 'LAD', id: 'A01336473', names: 'Daniela', lastName: 'Hernandez Gomez', phone: 53728197, age: 23, scolarship: true},
-  {career: 'ITC', id: 'A01333782', names: 'Alejandro', lastName: 'Lopez Jimenez', phone: 25964837, age: 22, scolarship: true},
-  {career: 'ITC', id: 'A01339459', names: 'Allan Gustavo', lastName: 'Montaño Jiuca', phone: 26528197, age: 20, scolarship: false},
-  {career: 'IDS', id: 'A01655378', names: 'Gabriela', lastName: 'Rodriguez Adame', phone: 54782918, age: 19, scolarship: false},
-  {career: 'IME', id: 'A01337849', names: 'Aidee', lastName: 'Gomez Campos', phone: 46728102, age: 19, scolarship: true},
-  {career: 'ITC', id: 'A01333390', names: 'Karen', lastName: 'Martinez Flores', phone: 56372937, age: 20, scolarship: true},
-  {career: 'LIN', id: 'A01337542', names: 'Yoselin', lastName: 'Hurtado Salgado', phone: 25627391, age: 18, scolarship: false},
-  {career: 'LIN', id: 'A01338759', names: 'Sarah', lastName: 'Mendez Carmona', phone: 28472917, age: 18, scolarship: false},
-  {career: 'LIN', id: 'A01339764', names: 'Maria Fernanda', lastName: 'Ruiz Gayosso', phone: 25738293, age: 22, scolarship: true}
-];
+import { Student } from './student';
+import { StudentService} from './student.service';
 
 @Component({
   selector: 'my-app',
@@ -38,14 +13,7 @@ const STUDENTS: Student[] = [
         <span class="badge">{{student.id}}</span> {{student.names}}
       </li>
     </ul>
-    <div *ngIf="selectedStudent">
-      <h2>Detalle de: {{selectedStudent.names}}</h2>
-      <div><label>Carrera: </label>{{selectedStudent.career}}</div>
-      <div>
-        <label>Nombres: </label>
-        <input [(ngModel)]="selectedStudent.names" placeholder="Nombres"/>
-      </div>
-    </div>
+    <student-detail [student]="selectedStudent"></student-detail>
   `,
   styles: [`
     .selected {
@@ -95,13 +63,24 @@ const STUDENTS: Student[] = [
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [StudentService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Directorio de Alumnos';
-  students = STUDENTS;
+  students: Student[];
   selectedStudent: Student;
+
+  constructor(private studentService: StudentService) { }
+
+  getStudents(): void {
+    this.studentService.getStudents().then(students => this.students = students);
+  }
+
+  ngOnInit(): void {
+    this.getStudents();
+  }
 
   onSelect(student: Student): void {
     this.selectedStudent = student;
