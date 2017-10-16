@@ -1,0 +1,7 @@
+.table-info, .table-info > th, .table-info > td{
+  background-color: #d9edf7;
+}
+
+.table-students > tbody > tr{
+  cursor: pointer;
+}

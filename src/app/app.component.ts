@@ -4,9 +4,6 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-      <nav>
-       <a routerLink="/students">Alumnos</a>
-      </nav>
     <router-outlet></router-outlet>
   `
 })

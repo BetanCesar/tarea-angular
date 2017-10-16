@@ -1,0 +1,12 @@
+.table-info, .table-info > th, .table-info > td{
+  background-color: #d9edf7;
+}
+
+#btn-back{
+  margin-top: 30px;
+}
+
+.img-student-detail{
+  width: 120px;
+  margin-bottom: 20px;
+}

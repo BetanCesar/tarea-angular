@@ -34,6 +34,7 @@ StudentDetailComponent = __decorate([
     core_1.Component({
         selector: 'student-detail',
         templateUrl: './student-detail.component.html',
+        styleUrls: ['./student-detail.component.css']
     }),
     __metadata("design:paramtypes", [student_service_1.StudentService,
         router_1.ActivatedRoute,

@@ -8,8 +8,8 @@ export class Student {
   age: number;
   scolarship: number;
   subjects: Subject[];
+  image: string;
 }
-
 export class Subject {
   name: string;
   grade: number;

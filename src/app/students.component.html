@@ -1,7 +1,7 @@
 <h2>Alumnos</h2>
-<table>
+<table class="table table-hover table-students">
   <thead>
-    <tr>
+    <tr class="table-info">
       <th>Matricula</th>
       <th>Nombre</th>
       <th>Carrera</th>
@@ -11,8 +11,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students">
-      <td [class.selected]="student === selectedStudent" (click)="onSelect(student)" (click)="gotoDetail()">{{student.mat}}</td>
+    <tr *ngFor="let student of students" [class.selected]="student === selectedStudent" (click)="onSelect(student)" (click)="gotoDetail()">
+      <td>{{student.mat}}</td>
       <td>{{student.names}} {{student.lastName}}</td>
       <td>{{student.career}}</td>
       <td>{{student.age}}</td>
