@@ -1,5 +1,16 @@
 <div *ngIf="student">
   <h2>Alumno: {{student.names}} {{student.lastName}}</h2>
+  <table>
+    <thead class="table-info">
+    <tr>
+      <td>Materia </td>
+      <td>Calificación </td>
+    </tr>
+    </thead>
+    <tr *ngFor="let subject of student.subjects">
+      <td>{{ subject.name }} </td><td>{{ subject.grade }} </td>
+    </tr>
+  </table>
   <div><label>Carrera: </label>
     <input [(ngModel)]="student.career" placeholder="Carrera"/>
   </div>

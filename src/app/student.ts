@@ -7,4 +7,10 @@ export class Student {
   phone: number;
   age: number;
   scolarship: number;
+  subjects: Subject[];
+}
+
+export class Subject {
+  name: string;
+  grade: number;
 }

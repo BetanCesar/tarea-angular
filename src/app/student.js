@@ -5,4 +5,10 @@ var Student = (function () {
     return Student;
 }());
 exports.Student = Student;
+var Subject = (function () {
+    function Subject() {
+    }
+    return Subject;
+}());
+exports.Subject = Subject;
 //# sourceMappingURL=student.js.map
