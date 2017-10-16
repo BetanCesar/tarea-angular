@@ -1,88 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Student } from './student';
-import { StudentService} from './student.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <h2>Alumnos</h2>
-    <ul class="students">
-      <li *ngFor="let student of students" [class.selected]="student === selectedStudent" (click)="onSelect(student)">
-        <span class="badge">{{student.id}}</span> {{student.names}}
-      </li>
-    </ul>
-    <student-detail [student]="selectedStudent"></student-detail>
-  `,
-  styles: [`
-    .selected {
-      background-color: #CFD8DC !important;
-      color: white;
-    }
-    .students {
-      margin: 0 0 2em 0;
-      list-style-type: none;
-      padding: 0;
-      width: 15em;
-    }
-    .students li {
-      cursor: pointer;
-      position: relative;
-      left: 0;
-      background-color: #EEE;
-      margin: .5em;
-      padding: .3em 0;
-      height: 1.6em;
-      border-radius: 4px;
-    }
-    .students li.selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-    .students li:hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .1em;
-    }
-    .students .text {
-      position: relative;
-      top: -3px;
-    }
-    .students .badge {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #607D8B;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 1.8em;
-      margin-right: .8em;
-      border-radius: 4px 0 0 4px;
-    }
-  `],
-  providers: [StudentService]
+      <nav>
+       <a routerLink="/students">Alumnos</a>
+      </nav>
+    <router-outlet></router-outlet>
+  `
 })
-
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Directorio de Alumnos';
-  students: Student[];
-  selectedStudent: Student;
-
-  constructor(private studentService: StudentService) { }
-
-  getStudents(): void {
-    this.studentService.getStudents().then(students => this.students = students);
-  }
-
-  ngOnInit(): void {
-    this.getStudents();
-  }
-
-  onSelect(student: Student): void {
-    this.selectedStudent = student;
-  }
 }

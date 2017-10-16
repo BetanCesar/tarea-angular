@@ -1,9 +1,10 @@
 export class Student {
+  id: number;
   career: string;
-  id: string;
+  mat: string;
   names: string;
   lastName: string;
   phone: number;
   age: number;
-  scolarship: boolean;
+  scolarship: number;
 }

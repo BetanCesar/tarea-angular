@@ -8,22 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+require("rxjs/add/operator/switchMap");
 var core_1 = require("@angular/core");
-var student_1 = require("./student");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
+var student_service_1 = require("./student.service");
 var StudentDetailComponent = (function () {
-    function StudentDetailComponent() {
+    function StudentDetailComponent(studentService, route, location) {
+        this.studentService = studentService;
+        this.route = route;
+        this.location = location;
     }
+    StudentDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.paramMap
+            .switchMap(function (params) { return _this.studentService.getStudent(+params.get('id')); })
+            .subscribe(function (student) { return _this.student = student; });
+    };
+    StudentDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
     return StudentDetailComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", student_1.Student)
-], StudentDetailComponent.prototype, "student", void 0);
 StudentDetailComponent = __decorate([
     core_1.Component({
         selector: 'student-detail',
-        template: "    \n    <div *ngIf=\"student\">\n      <h2>Detalle de: {{student.names}}</h2>\n      <div><label>Carrera: </label>{{student.career}}</div>\n      <div>\n        <label>Nombres: </label>\n        <input [(ngModel)]=\"student.names\" placeholder=\"Nombres\"/>\n      </div>\n    </div>\n  "
-    })
+        templateUrl: './student-detail.component.html',
+    }),
+    __metadata("design:paramtypes", [student_service_1.StudentService,
+        router_1.ActivatedRoute,
+        common_1.Location])
 ], StudentDetailComponent);
 exports.StudentDetailComponent = StudentDetailComponent;
 //# sourceMappingURL=student-detail.component.js.map

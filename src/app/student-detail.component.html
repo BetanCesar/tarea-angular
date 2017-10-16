@@ -1,0 +1,27 @@
+<div *ngIf="student">
+  <h2>Alumno: {{student.names}} {{student.lastName}}</h2>
+  <div><label>Carrera: </label>
+    <input [(ngModel)]="student.career" placeholder="Carrera"/>
+  </div>
+  <div>
+    <label>Nombres: </label>
+    <input [(ngModel)]="student.names" placeholder="Nombres"/>
+  </div>
+  <div>
+    <label>Apellidos: </label>
+    <input [(ngModel)]="student.lastName" placeholder="Apellidos"/>
+  </div>
+  <div>
+    <label>Edad: </label>
+    <input [(ngModel)]="student.age" placeholder="Edad"/>
+  </div>
+  <div>
+    <label>Telefono: </label>
+    <input [(ngModel)]="student.phone" placeholder="Telefono"/>
+  </div>
+  <div>
+    <label>Beca: </label>
+    <input [(ngModel)]="student.scolarship" placeholder="Beca"/>
+  </div>
+  <button (click)="goBack()">Atras</button>
+</div>
